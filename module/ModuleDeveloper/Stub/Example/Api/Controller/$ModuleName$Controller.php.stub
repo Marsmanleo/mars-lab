@@ -1,0 +1,92 @@
+<?php
+
+
+namespace Module\$ModuleName$\Api\Controller;
+
+use Illuminate\Routing\Controller;
+use ModStart\Core\Dao\ModelUtil;
+use ModStart\Core\Input\InputPackage;
+use ModStart\Core\Input\Response;
+use Module\$ModuleName$\Model\$ModuleName$;
+use Module\$ModuleName$\Model\$ModuleName$Category;
+
+/**
+ * @Api $ModuleTitle$
+ */
+class $ModuleName$Controller extends Controller
+{
+
+    /**
+     * @Api 分页列表
+     * @ApiBodyParam categoryId int 分类ID
+     * @ApiBodyParam keywords string 关键词
+     * @ApiResponseData {
+     *  "total": 1,
+     *  "page" : 1,
+     *  "pageSize": 10,
+     *  "records": [
+     *      {
+     *        "id":1,
+     *        "categoryId":1,
+     *        "title":"标题",
+     *        "summary":"摘要",
+     *        "content":"内容"
+     *      }
+     *  ]
+     * }
+     */
+    public function paginate()
+    {
+        $input = InputPackage::buildFromInput();
+        $page = $input->getPage();
+        $pageSize = $input->getPageSize();
+
+        $query = $ModuleName$::query();
+        $categoryId = $input->getInteger('categoryId');
+        if ($categoryId) {
+            $query = $query->where('categoryId', $categoryId);
+        }
+        $keywords = $input->getTrimString('keywords');
+        if ($keywords) {
+            $query = $query->where('title', 'like', '%' . $keywords . '%');
+        }
+        $query = $query->orderBy('id', 'desc');
+        $result = $query->paginate($pageSize, ['*'], 'page', $page)->toArray();
+        $paginateData = [
+            'records' => $result['data'],
+            'total' => $result['total'],
+        ];
+
+        return Response::generateSuccessData([
+            'page' => $page,
+            'pageSize' => $pageSize,
+            'total' => $paginateData['total'],
+            'records' => $paginateData['records'],
+        ]);
+    }
+
+
+    /**
+     * @Api 获取详情
+     * @ApiBodyParam id int ID
+     * @ApiResponseData {
+     *   "id":1,
+     *   "categoryId":1,
+     *   "title":"标题",
+     *   "summary":"摘要",
+     *   "content":"内容"
+     * }
+     */
+    public function get()
+    {
+        $input = InputPackage::buildFromInput();
+        $id = $input->getInteger('id');
+        $record = ModelUtil::get('$module_name$', $id);
+        $record['_category'] = $ModuleName$Category::recordGet($record['categoryId']);
+        return Response::generateSuccessData([
+            'record' => $record,
+            'categories' => $ModuleName$Category::categoryTree(),
+            'latestRecords' => $ModuleName$::recordsLatest(),
+        ]);
+    }
+}

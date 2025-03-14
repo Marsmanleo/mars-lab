@@ -1,0 +1,27 @@
+<?php
+
+
+namespace Module\$ModuleName$\Core;
+
+use Module\Vendor\Provider\SiteTemplate\AbstractSiteTemplateProvider;
+
+class ThemeSiteTemplateProvider extends AbstractSiteTemplateProvider
+{
+    const NAME = '$ThemeName$';
+
+    public function name()
+    {
+        return self::NAME;
+    }
+
+    public function title()
+    {
+        return '$ModuleTitle$';
+    }
+
+    public function root()
+    {
+        return 'module::$ModuleName$.View';
+    }
+
+}

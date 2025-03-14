@@ -1,0 +1,17 @@
+{
+    "name": "I18n",
+    "title": "多语言快速支持",
+    "require": [
+        "Vendor"
+    ],
+    "env": [
+        "laravel5",
+        "laravel9"
+    ],
+    "version": "1.4.0",
+    "author": "官方",
+    "description": "提供多语言支持、语言翻译表管理等功能",
+    "tags": [
+        "多语言"
+    ]
+}

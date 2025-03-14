@@ -1,0 +1,53 @@
+<?php
+
+namespace Module\$ModuleName$\Core;
+
+use Illuminate\Events\Dispatcher;
+use Illuminate\Support\ServiceProvider;
+use ModStart\Admin\Config\AdminMenu;
+use Module\Cms\Provider\Theme\CmsThemeProvider;
+use Module\Vendor\Provider\SiteTemplate\SiteTemplateProvider;
+
+class ModuleServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot(Dispatcher $events)
+    {
+        SiteTemplateProvider::register(ThemeSiteTemplateProvider::class);
+        CmsThemeProvider::register(ThemeProvider::class);
+        AdminMenu::register(function(){
+            return [
+               [
+                   'title' => '功能设置',
+                   'icon' => 'tools',
+                   'sort' => 300,
+                   'children' => [
+                       [
+                           'title' => '模板设置',
+                           'children' => [
+                               [
+                                   'title' => '$ModuleTitle$',
+                                   'url' => '\Module\$ModuleName$\Admin\Controller\ConfigController@index',
+                               ],
+                           ],
+                       ],
+                   ]
+               ],
+           ];
+        });
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+
+    }
+}

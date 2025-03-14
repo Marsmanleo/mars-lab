@@ -1,0 +1,9 @@
+<?php
+
+
+namespace Module\$ModuleName$\Core;
+
+class $ModuleName$Constant
+{
+    const FOO = 'foo';
+}

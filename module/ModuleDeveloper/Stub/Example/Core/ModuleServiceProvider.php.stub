@@ -1,0 +1,79 @@
+<?php
+
+namespace Module\$ModuleName$\Core;
+
+use Illuminate\Events\Dispatcher;
+use Illuminate\Support\ServiceProvider;
+use ModStart\Admin\Config\AdminMenu;
+use Module\Vendor\Admin\Widget\AdminWidgetLink;
+
+class ModuleServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot(Dispatcher $events)
+    {
+        // 注册管理菜单
+        AdminMenu::register(function(){
+            return [
+                [
+                    'title' => '内容管理',
+                    'icon' => 'file',
+                    'sort' => 150,
+                    'children' => [
+                        [
+                             'title' => '$ModuleTitle$',
+                             'children' => [
+                                 [
+                                     'title' => '$ModuleTitle$分类',
+                                     'url' => '\Module\$ModuleName$\Admin\Controller\$ModuleName$CategoryController@index',
+                                 ],
+                                 [
+                                     'title' => '$ModuleTitle$列表',
+                                     'url' => '\Module\$ModuleName$\Admin\Controller\$ModuleName$Controller@index',
+                                 ],
+                                 [
+                                      'title' => '$ModuleTitle$设置',
+                                      'url' => '\Module\$ModuleName$\Admin\Controller\ConfigController@index',
+                                  ],
+                             ]
+                        ],
+                    ]
+
+                 ],
+                 /*
+                 [
+                     'title' => '功能设置',
+                     'icon' => 'tools',
+                     'sort' => 300,
+                     'children' => [ ]
+                 ],
+                 [
+                    'title' => L('Site Manage'),
+                    'icon' => 'cog',
+                    'sort' => 400,
+                    'children' => [ ]
+                 ]
+                */
+            ];
+        });
+        AdminWidgetLink::register(function () {
+            $menu = [];
+            $menu[] = ['$ModuleTitle$', modstart_web_url('$module_name$')];
+            return AdminWidgetLink::build('内容', $menu);
+        });
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+
+    }
+}

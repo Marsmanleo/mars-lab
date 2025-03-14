@@ -1,0 +1,189 @@
+select, uni-textarea, uni-input:not([type]), uni-input[type="text"], uni-input[type="password"], uni-input[type="datetime"], uni-input[type="datetime-local"], uni-input[type="date"], uni-input[type="month"], uni-input[type="time"], uni-input[type="week"], uni-input[type="number"], uni-input[type="email"], uni-input[type="url"], uni-input[type="search"], uni-input[type="tel"], uni-input[type="color"] {
+    border: none;
+    padding: 0;
+}
+
+uni-modal, uni-toast {
+    z-index: 999999 !important;
+}
+
+uni-toast {
+    .uni-toast {
+        padding: 0 0.5rem;
+    }
+}
+
+select:read-only, uni-textarea:read-only, uni-input[type="text"]:read-only, uni-input[type="password"]:read-only, uni-input[type="datetime"]:read-only, uni-input[type="datetime-local"]:read-only, uni-input[type="date"]:read-only, uni-input[type="month"]:read-only, uni-input[type="time"]:read-only, uni-input[type="week"]:read-only, uni-input[type="number"]:read-only, uni-input[type="email"]:read-only, uni-input[type="url"]:read-only, uni-input[type="search"]:read-only, uni-input[type="tel"]:read-only, uni-input[type="color"]:read-only {
+    background: transparent;
+}
+
+uni-button:after {
+    display: none;
+}
+
+textarea {
+    border: 1px solid #EEE;
+    min-height: 3rem;
+    width: 100%;
+    resize: none;
+    padding: 0.2rem !important;
+}
+
+.uni-input-placeholder, .uni-textarea-placeholder {
+    color: var(--color-muted);
+}
+
+// 输入框 input placeholder 向上错位问题
+select,
+textarea,
+input:not([type]),
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+._select:read-only, textarea:read-only, input[type="text"]:read-only, input[type="password"]:read-only, input[type="datetime"]:read-only, input[type="datetime-local"]:read-only, input[type="date"]:read-only, input[type="month"]:read-only, input[type="time"]:read-only, input[type="week"]:read-only, input[type="number"]:read-only, input[type="email"]:read-only, input[type="url"]:read-only, input[type="search"]:read-only, input[type="tel"]:read-only, input[type="color"]:read-only {
+    background-color: transparent;
+}
+
+.uni-easyinput {
+    .is-disabled {
+        .uni-easyinput__content-input {
+            background-color: transparent;
+        }
+    }
+}
+
+.ub-input-simple {
+    margin-bottom: 1rem;
+
+    .input {
+        background-color: var(--color-input-bg);
+        border-radius: 1.2rem;
+        margin: 0.5rem 0;
+        padding: 0.5rem 0.75rem;
+
+        input {
+            height: 1rem;
+            line-height: 1rem;
+            min-height: 1rem;
+        }
+
+        &.with-action {
+            display: flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+        }
+
+        &.with-title {
+            display: flex;
+            align-items: flex-start;
+
+            .title {
+                min-width: 2rem;
+                text-align: right;
+                padding-right: 0.5rem;
+                max-width: 50%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 1.5;
+            }
+        }
+
+        .control {
+            flex-grow: 1;
+        }
+
+        .action {
+            flex-shrink: 0;
+            min-width: 6rem;
+            font-size: 0;
+        }
+    }
+
+    .help {
+        color: var(--color-tertiary);
+    }
+}
+
+.ub-input-action {
+    margin-bottom: 1rem;
+}
+
+.ub-form {
+    .line {
+        .field {
+            uni-label {
+                border: none;
+            }
+        }
+    }
+}
+
+.ub-m-list {
+    border-radius: 0.5rem;
+    background-color: var(--color-content-bg);
+    margin-bottom: 1rem;
+
+
+    .ub-m-list-item {
+        padding: 0.75rem 0.5rem;
+        display: flex;
+        align-items: center;
+        font-size: var(--font-size-medium);
+        position: relative;
+
+        &:last-child {
+            &:after {
+                display: none;
+            }
+        }
+
+        &.no-icon {
+            &:after {
+                left: 0;
+            }
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 1.7rem;
+            border-bottom: 1px solid var(--color-body-line);
+        }
+
+        .icon {
+            width: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .title {
+            flex-grow: 1;
+        }
+
+        .angle {
+            color: var(--color-muted);
+            width: 1.2rem;
+            flex-shrink: 0;
+            text-align: right;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<?php
+
+namespace Module\$ModuleName$\Admin\Controller;
+
+use Illuminate\Routing\Controller;
+use ModStart\Admin\Layout\AdminConfigBuilder;
+
+class ConfigController extends Controller
+{
+    public function index(AdminConfigBuilder $builder)
+    {
+        $builder->pageTitle('$ModuleTitle$设置');
+        $builder->text('$ModuleName$_Title', '$ModuleTitle$标题')->help('默认为 $ModuleTitle$');
+        $builder->text('$ModuleName$_SubTitle', '$ModuleTitle$副标题')->help('默认为 提供有价值的$ModuleTitle$');
+        $builder->image('$ModuleName$_Background', '页面顶部背景图')->help('默认为系统主色调渐变色背景');
+        $builder->formClass('wide');
+        return $builder->perform();
+    }
+
+}

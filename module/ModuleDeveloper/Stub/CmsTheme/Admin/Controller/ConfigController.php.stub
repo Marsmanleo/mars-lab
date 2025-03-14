@@ -1,0 +1,23 @@
+<?php
+
+namespace Module\$ModuleName$\Admin\Controller;
+
+use Illuminate\Routing\Controller;
+use ModStart\Admin\Layout\AdminConfigBuilder;
+use Module\Cms\Traits\CmsSiteTemplateFillDataTrait;
+
+class ConfigController extends Controller
+{
+    use CmsSiteTemplateFillDataTrait;
+
+    public function index(AdminConfigBuilder $builder)
+    {
+        $builder->pageTitle('$ModuleTitle$');
+        $builder->text('$ModuleName$_Test','测试变量配置');
+        $url = action('\\' . __CLASS__ . '@fillData');
+        $builder->display('_display', '')->content('<a href="javascript:;" data-dialog-request="' . $url . '"><i class="iconfont icon-credit"></i> 初始化演示数据</a>')->addable(true);
+        $builder->formClass('wide');
+        return $builder->perform();
+    }
+
+}

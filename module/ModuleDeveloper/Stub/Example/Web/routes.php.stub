@@ -1,0 +1,20 @@
+<?php
+/* @var \Illuminate\Routing\Router $router */
+$middlewares = [];
+if (class_exists(\Module\Member\Middleware\WebAuthMiddleware::class)) {
+    $middlewares[] = \Module\Member\Middleware\WebAuthMiddleware::class;
+}
+$router->group([
+    'middleware' => $middlewares,
+], function () use ($router) {
+
+    $router->match(['get'], '$module_name$', 'IndexController@index');
+
+    $router->match(['get'], '$module_name$/list', '$ModuleName$Controller@index');
+    $router->match(['get'], '$module_name$/show/{id}', '$ModuleName$Controller@show');
+
+});
+
+
+
+

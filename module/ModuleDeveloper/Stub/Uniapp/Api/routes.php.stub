@@ -1,0 +1,16 @@
+<?php
+
+/* @var \Illuminate\Routing\Router $router */
+$router->group([
+    'middleware' => [
+        \Module\Member\Middleware\WebAuthMiddleware::class,
+    ],
+], function () use ($router) {
+
+    $router->match(['post'], '$module_name$/config', 'ConfigController@index');
+    $router->match(['post'], '$module_name$/config_app', 'ConfigController@app');
+
+});
+
+
+

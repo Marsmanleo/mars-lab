@@ -1,0 +1,12 @@
+@import "./../brick/sui/base/theme";
+
+@color-primary: #587BEB;
+@color-primary-light: lighten(@color-primary, 5%);
+@color-primary-dark: darken(@color-primary, 5%);
+
+:root, page {
+    --color-primary: var(--theme-color-primary, @color-primary);
+    --color-primary-light: var(--theme-color-primary-light, @color-primary-light);
+    --color-primary-dark: var(--theme-color-primary-dark, @color-primary-dark);
+}
+

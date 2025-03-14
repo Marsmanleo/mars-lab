@@ -1,0 +1,38 @@
+<?php
+
+namespace Module\$ModuleName$\Core;
+
+class ModuleHook
+{
+    /**
+     * 安装完成
+     */
+    public function hookInstalled()
+    {
+
+    }
+
+    /**
+     * 已启用
+     */
+    public function hookEnabled()
+    {
+
+    }
+
+    /**
+     * 禁用前
+     */
+    public function hookBeforeDisable()
+    {
+
+    }
+
+    /**
+     * 卸载前
+     */
+    public function hookBeforeUninstall()
+    {
+
+    }
+}

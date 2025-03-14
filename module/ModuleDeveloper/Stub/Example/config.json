@@ -1,0 +1,22 @@
+{
+    "name": "$ModuleName$",
+    "title": "$ModuleTitle$",
+    "env": $ModuleEnv$,
+    "types": [
+        "PC",
+        "Mobile"
+    ],
+    "tags": [],
+    "require": [
+        "Vendor"
+    ],
+    "suggest": [],
+    "version": "1.0.0",
+    "modstartVersion": ">=$ModstartVersion$",
+    "author": "Author",
+    "description": "$ModuleDescription$",
+    "providers": [
+    ],
+    "config": {
+    }
+}

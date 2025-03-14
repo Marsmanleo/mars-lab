@@ -1,0 +1,52 @@
+<?php
+
+
+namespace Module\$ModuleName$\Api\Controller;
+
+
+use ModStart\Core\Assets\AssetsUtil;
+use ModStart\Core\Input\Request;
+use ModStart\Core\Input\Response;
+use ModStart\Core\Type\TypeUtil;
+use ModStart\Core\Util\ConstantUtil;
+use ModStart\Core\Util\EnvUtil;
+use ModStart\Core\Util\FileUtil;
+use ModStart\Module\ModuleBaseController;
+use ModStart\Module\ModuleManager;
+use Module\Member\Auth\MemberUser;
+use Module\Member\Auth\MemberVip;
+use Module\Member\Type\MemberMessageStatus;
+use Module\Vendor\LazyValue\LazyValueUtil;
+use Module\Vendor\Support\ResponseCodes;
+use Module\Vendor\Util\ApiUtil;
+
+class ConfigController extends ModuleBaseController
+{
+    public function index()
+    {
+        $data = ApiUtil::config();
+        if(modstart_module_enabled('Member')){
+            $data = array_merge($data, \Module\Member\Util\ApiUtil::config());
+        }
+        return Response::jsonSuccessData($data);
+    }
+
+    public function app()
+    {
+        $data = [];
+        list($view, $_) = $this->viewPaths('$moduleName$.index');
+        $hash = date('Ymd_His', filemtime($this->viewRealpath($view)));
+        $data['hashPC'] = 'v' . $hash;
+        $data['hashLazyValue'] = [];
+
+        $data['user'] = \Module\Member\Util\ApiUtil::user();
+        $data['biz'] = [
+            // 'Xxx_CommentEnable' => modstart_config('Xxx_CommentEnable', false),
+        ];
+        // $data['hashLazyValue']['Xxx'] = LazyValueUtil::hash("Xxx", function () {
+        //     return app(XxxController::class)->all();
+        // });
+
+        return Response::jsonSuccessData($data);
+    }
+}

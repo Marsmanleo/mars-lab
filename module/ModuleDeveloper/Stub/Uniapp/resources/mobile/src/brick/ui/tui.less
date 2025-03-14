@@ -1,0 +1,65 @@
+.tui-btn{
+  padding-left:20rpx;
+  padding-right:20rpx;
+  background:#EEE;
+}
+
+.tui-btn + .tui-btn{
+  margin-left:10rpx;
+}
+
+uni-radio::before, uni-checkbox::before{
+	right:3px;
+}
+radio::before, checkbox::before {
+	right:2px;
+}
+.tui-checkbox .uni-checkbox-input.uni-checkbox-input-checked{
+	background-color:var(--color-primary);
+}
+
+.tui-grid-label{
+	font-size:var(--font-size-small);
+}
+
+button{
+	padding:0;
+}
+
+.tui-grids {
+    .tui-grid {
+        background-color: transparent !important;
+        &.tui-item-hover {
+            background-color: transparent !important;
+        }
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.tui-nomore-text {
+  background-color: var(--color-body-bg) !important;
+  color:var(--color-muted) !important;
+}
+
+.tui-list-content{
+  &:before{
+    border-top-color: var(--color-body-line) !important;
+  }
+  &:after{
+    border-bottom-color: var(--color-body-line) !important;
+  }
+  .tui-list-cell{
+    background-color: var(--color-content-bg) !important;
+    color:var(--color-text) !important;
+  }
+}
+
+.c-form-group, .c-list.menu > .cu-item {
+    background-color: var(--color-content-bg) !important;
+}
+
+.c-form-group + .c-form-group {
+  border: none !important;
+}

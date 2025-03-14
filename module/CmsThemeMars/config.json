@@ -1,0 +1,24 @@
+{
+    "name": "CmsThemeMars",
+    "title": "Mars主题",
+    "env": ["laravel5","laravel9"],
+    "types": [
+        "Theme"
+    ],
+    "tags": [
+        "主题"
+    ],
+    "require": [
+        "Vendor",
+        "Cms"
+    ],
+    "suggest": [],
+    "version": "1.0.0",
+    "modstartVersion": ">=3.8.0",
+    "author": "Author",
+    "description": "",
+    "providers": [
+    ],
+    "config": {
+    }
+}

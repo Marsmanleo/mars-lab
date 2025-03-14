@@ -1,0 +1,47 @@
+<?php
+
+namespace Module\$ModuleName$\Util;
+
+use ModStart\Core\Assets\AssetsUtil;
+use ModStart\Core\Dao\ModelUtil;
+use Illuminate\Database\Eloquent\Model;
+use Module\$ModuleName$\Model\$ModuleName$;
+
+class $ModuleName$Util
+{
+    public static function get($id)
+    {
+        return ModelUtil::get($ModuleName$::class, $id);
+    }
+
+    public static function update($id, $data)
+    {
+        return ModelUtil::update($ModuleName$::class, $id, $data);
+    }
+
+    public static function all()
+    {
+        return ModelUtil::all($ModuleName$::class, [], ['*'], ['sort', 'asc']);
+    }
+
+    public static function latest($limit = 5)
+    {
+        return ModelUtil::model($ModuleName$::class)
+            ->orderBy('id', 'desc')
+            ->limit($limit)->get()->toArray();
+    }
+
+    public static function buildRecord($record)
+    {
+        $record['cover'] = AssetsUtil::fixFull($record['cover']);
+        return $record;
+    }
+
+    public static function buildRecords($records)
+    {
+        foreach ($records as $k => $v) {
+            $records[$k] = self::buildRecord($v);
+        }
+        return $records;
+    }
+}

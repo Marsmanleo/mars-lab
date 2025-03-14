@@ -1,0 +1,19 @@
+<?php
+
+/* @var \Illuminate\Routing\Router $router */
+
+$router->match(['get', 'post'], '$module_name$/config', 'ConfigController@index');
+
+$router->match(['get', 'post'], '$module_name$/category', '$ModuleName$CategoryController@index');
+$router->match(['get', 'post'], '$module_name$/category/add', '$ModuleName$CategoryController@add');
+$router->match(['get', 'post'], '$module_name$/category/edit', '$ModuleName$CategoryController@edit');
+$router->match(['post'], '$module_name$/category/delete', '$ModuleName$CategoryController@delete');
+$router->match(['get'], '$module_name$/category/show', '$ModuleName$CategoryController@show');
+$router->match(['post'], '$module_name$/category/sort', '$ModuleName$CategoryController@sort');
+
+$router->match(['get', 'post'], '$module_name$', '$ModuleName$Controller@index');
+$router->match(['get', 'post'], '$module_name$/add', '$ModuleName$Controller@add');
+$router->match(['get', 'post'], '$module_name$/edit', '$ModuleName$Controller@edit');
+$router->match(['post'], '$module_name$/delete', '$ModuleName$Controller@delete');
+$router->match(['get'], '$module_name$/show', '$ModuleName$Controller@show');
+$router->match(['post'], '$module_name$/sort', '$ModuleName$Controller@sort');

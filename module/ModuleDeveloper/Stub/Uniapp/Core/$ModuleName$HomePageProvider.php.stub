@@ -1,0 +1,27 @@
+<?php
+
+
+namespace Module\$ModuleName$\Core;
+
+
+use Module\Vendor\Provider\HomePage\AbstractHomePageProvider;
+
+class $ModuleName$HomePageProvider extends AbstractHomePageProvider
+{
+    const ACTION = '\\Module\\$ModuleName$\\Web\\Controller\\IndexController@index';
+
+    public function type()
+    {
+        return self::TYPE_MOBILE;
+    }
+
+    public function title()
+    {
+        return '$ModuleTitle$';
+    }
+
+    public function action()
+    {
+        return self::ACTION;
+    }
+}

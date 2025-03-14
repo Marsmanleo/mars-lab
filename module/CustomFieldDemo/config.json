@@ -1,0 +1,22 @@
+{
+    "name": "CustomFieldDemo",
+    "title": "自定义字段示例",
+    "require": [
+        "Vendor:>=1.9.0"
+    ],
+    "version": "1.1.0",
+    "env": [
+        "laravel5",
+        "laravel9"
+    ],
+    "tags": [
+        "演示程序"
+    ],
+    "modstartVersion": ">=1.9.0",
+    "author": "ModStart",
+    "description": "提供自定义字段示例程序",
+    "providers": [
+    ],
+    "config": {
+    }
+}

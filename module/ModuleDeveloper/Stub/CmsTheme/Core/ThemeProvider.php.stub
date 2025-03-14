@@ -1,0 +1,14 @@
+<?php
+
+
+namespace Module\$ModuleName$\Core;
+
+use Module\Cms\Provider\Theme\AbstractThemeProvider;
+
+class ThemeProvider extends AbstractThemeProvider
+{
+    public function name()
+    {
+        return '$ModuleName$';
+    }
+}

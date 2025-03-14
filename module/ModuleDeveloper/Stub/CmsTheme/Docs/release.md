@@ -1,0 +1,17 @@
+## 1.2.0 功能版本说明
+
+- $ModuleDescription$
+- 每行一个功能特性
+
+---
+
+## 1.1.0 功能版本说明
+
+- $ModuleDescription$
+- 每行一个功能特性
+
+---
+
+## 1.0.0 $ModuleTitle$
+
+- $ModuleDescription$

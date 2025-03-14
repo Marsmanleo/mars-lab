@@ -1,0 +1,28 @@
+{
+    "name": "I18nNav",
+    "env": [
+        "laravel5",
+        "laravel9"
+    ],
+    "types": [
+        "PC",
+        "Mobile"
+    ],
+    "require": [
+        "Vendor:>=3.0.0",
+        "I18n"
+    ],
+    "modstartVersion": ">=2.6.0",
+    "title": "通用导航配置(多语言)",
+    "version": "1.0.0",
+    "author": "官方",
+    "description": "提供多位置的导航配置工具",
+    "config": {
+        "position": [
+            [
+                "keyValueList",
+                "位置"
+            ]
+        ]
+    }
+}

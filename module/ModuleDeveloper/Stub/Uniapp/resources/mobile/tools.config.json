@@ -1,0 +1,6 @@
+{
+    "constants": [
+        "ResponseCodes",
+        "Module\\Member\\Type\\MemberMessageStatus"
+    ]
+}

@@ -1,0 +1,38 @@
+<?php
+
+
+namespace Module\$ModuleName$\Core;
+
+use ModStart\Form\Form;
+use Module\Vendor\Provider\SiteTemplate\AbstractSiteTemplateProvider;
+
+class ThemeSiteTemplateProvider extends AbstractSiteTemplateProvider
+{
+    const NAME = '$ModuleName$';
+
+    public function name()
+    {
+        return self::NAME;
+    }
+
+    public function title()
+    {
+        return '$ModuleTitle$';
+    }
+
+    public function root()
+    {
+        return 'module::$ModuleName$.View';
+    }
+
+    public function hasConfig()
+    {
+        return false;
+    }
+
+    public function config(Form $form, $param = [])
+    {
+        // add config here
+    }
+
+}

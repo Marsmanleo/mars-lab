@@ -1,0 +1,112 @@
+<?php
+
+namespace Module\$ModuleName$\Util;
+
+use Illuminate\Support\Facades\Cache;
+use ModStart\Core\Dao\ModelUtil;
+use ModStart\Core\Util\TreeUtil;
+use Illuminate\Database\Eloquent\Model;
+use Module\$ModuleName$\Model\$ModuleName$Category;
+
+class $ModuleName$CategoryUtil
+{
+    const CACHE_KEY = '$ModuleName$Category:';
+
+    public static function clearCache()
+    {
+        Cache::forget(self::CACHE_KEY . 'Tree');
+        Cache::forget(self::CACHE_KEY . 'All');
+    }
+
+    public static function all()
+    {
+        return Cache::rememberForever(self::CACHE_KEY . 'All', function () {
+            return ModelUtil::all($ModuleName$Category::class, [], ['*'], ['sort', 'asc']);
+        });
+    }
+
+    public static function tree()
+    {
+        return Cache::rememberForever(self::CACHE_KEY . 'Tree', function () {
+            $nodes = self::all();
+            return TreeUtil::nodesToTree($nodes);
+        });
+    }
+
+    public static function childrenIds($categoryId, $includeSelf = true)
+    {
+        $nodes = self::all();
+        $categoryIds = [];
+        if ($includeSelf) {
+            $categoryIds[] = $categoryId;
+        }
+        return array_merge($categoryIds, TreeUtil::nodesChildrenIds($nodes, $categoryId));
+    }
+
+    public static function child($categoryId)
+    {
+        $nodes = self::all();
+        $children = [];
+        foreach ($nodes as $node) {
+            if ($node['pid'] == $categoryId) {
+                $children[] = $node;
+            }
+        }
+        return $children;
+    }
+
+    public static function chainWithItems($categoryId)
+    {
+        $records = self::all();
+        return TreeUtil::nodesChainWithItems($records, $categoryId);
+    }
+
+    public static function chainByTitles($titles = [])
+    {
+        $pid = 0;
+        $results = [];
+        foreach ($titles as $title) {
+            $childNodes = self::child($pid);
+            $found = false;
+            foreach ($childNodes as $childNode) {
+                if ($childNode['title'] == $title) {
+                    $results[] = $childNode;
+                    $pid = $childNode['id'];
+                    $found = true;
+                    break;
+                }
+            }
+            if (!$found) {
+                return $results;
+            }
+        }
+        return $results;
+    }
+
+    public static function get($id)
+    {
+        foreach (self::all() as $one) {
+            if ($one['id'] == $id) {
+                return $one;
+            }
+        }
+        return null;
+    }
+
+    public static function getByTitle($title)
+    {
+        foreach (self::all() as $item) {
+            if ($item['title'] == $title) {
+                return $item;
+            }
+        }
+        return null;
+    }
+
+    public static function mergeCategories(&$records, $categoryIdKey = 'categoryId', $mergeKey = '_category')
+    {
+        foreach ($records as $k => $v) {
+            $records[$k][$mergeKey] = self::get($v[$categoryIdKey]);
+        }
+    }
+}

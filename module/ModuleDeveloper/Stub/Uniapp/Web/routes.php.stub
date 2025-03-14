@@ -1,0 +1,9 @@
+<?php
+
+/* @var \Illuminate\Routing\Router $router */
+
+$router->match(['get'], '$module_name$', 'IndexController@index');
+
+
+
+

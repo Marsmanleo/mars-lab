@@ -1,0 +1,39 @@
+<?php
+
+namespace Module\$ModuleName$\Web\Controller;
+
+use ModStart\Core\Input\InputPackage;
+use ModStart\Core\Input\Request;
+use ModStart\Core\Input\Response;
+use ModStart\Core\Util\PageHtmlUtil;
+use ModStart\Module\ModuleBaseController;
+use Module\$ModuleName$\Model\$ModuleName$Category;
+
+class $ModuleName$Controller extends ModuleBaseController
+{
+    protected $api;
+
+    public function __construct(\Module\$ModuleName$\Api\Controller\$ModuleName$Controller $api)
+    {
+        $this->api = $api;
+    }
+
+    public function index()
+    {
+        $input = InputPackage::buildFromInput();
+        $paginateData = Response::tryGetData($this->api->paginate());
+        $viewData = [];
+        $viewData['records'] = $paginateData['records'];
+        $viewData['categoryId'] = $input->getInteger('categoryId');
+        $viewData['categories'] = $ModuleName$Category::categoryTree();
+        $viewData['pageHtml'] = PageHtmlUtil::render($paginateData['total'], $paginateData['pageSize'], $paginateData['page'], '?' . Request::mergeQueries(['page' => ['{page}']]));
+        return $this->view('$moduleName$.list', $viewData);
+    }
+
+    public function show($id)
+    {
+        InputPackage::mergeToInput('id', $id);
+        $viewData = Response::tryGetData($this->api->get());
+        return $this->view('$moduleName$.show', $viewData);
+    }
+}

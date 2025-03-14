@@ -1,0 +1,24 @@
+{
+    "name": "$ModuleName$",
+    "title": "$ModuleTitle$",
+    "env": $ModuleEnv$,
+    "types": [
+        "Theme"
+    ],
+    "tags": [
+        "Blog主题"
+    ],
+    "require": [
+        "Vendor",
+        "Blog"
+    ],
+    "suggest": [],
+    "version": "1.0.0",
+    "modstartVersion": ">=$ModstartVersion$",
+    "author": "Author",
+    "description": "$ModuleDescription$",
+    "providers": [
+    ],
+    "config": {
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "I18nDemo",
+    "title": "多语言开发示例",
+    "env": [
+        "laravel5",
+        "laravel9"
+    ],
+    "types": [
+        "PC",
+        "Mobile"
+    ],
+    "tags": [
+        "多语言"
+    ],
+    "require": [
+        "Vendor:>=4.1.0",
+        "I18n"
+    ],
+    "suggest": [],
+    "version": "1.0.1",
+    "modstartVersion": ">=3.7.0",
+    "author": "ModStart",
+    "description": "提供多语言开发示例代码和调用方式",
+    "providers": [
+    ],
+    "config": {
+    }
+}

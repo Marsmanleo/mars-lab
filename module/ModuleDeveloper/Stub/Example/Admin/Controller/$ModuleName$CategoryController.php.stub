@@ -1,0 +1,43 @@
+<?php
+
+
+namespace Module\$ModuleName$\Admin\Controller;
+
+
+use Illuminate\Routing\Controller;
+use ModStart\Admin\Concern\HasAdminQuickCRUD;
+use ModStart\Admin\Layout\AdminCRUDBuilder;
+use ModStart\Grid\GridFilter;
+use ModStart\Support\Concern\HasFields;
+use Module\$ModuleName$\Util\$ModuleName$CategoryUtil;
+use ModStart\Form\Form;
+use Module\$ModuleName$\Model\$ModuleName$Category;
+
+class $ModuleName$CategoryController extends Controller
+{
+    use HasAdminQuickCRUD;
+
+    protected function crud(AdminCRUDBuilder $builder)
+    {
+        $builder
+            ->init($ModuleName$Category::class)
+            ->field(function ($builder) {
+                /** @var HasFields $builder */
+                $builder->id('id', 'ID');
+                $builder->text('title', '名称');
+                $builder->display('created_at', L('Created At'))->listable(false);
+                $builder->display('updated_at', L('Updated At'))->listable(false);
+            })
+            ->gridFilter(function (GridFilter $filter) {
+                $filter->eq('id', L('ID'));
+                $filter->like('title', L('Title'));
+            })
+            ->hookChanged(function (Form $form) {
+                $ModuleName$CategoryUtil::clearCache();
+            })
+            ->title('$ModuleTitle$分类')
+            ->asTree()
+            ->treeMaxLevel(1);
+    }
+
+}
